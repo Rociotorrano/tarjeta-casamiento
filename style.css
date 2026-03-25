@@ -1,0 +1,470 @@
+/* Premium Wedding Invitation Styles - "Deep Sea & Gold" (Restored Baseline) */
+:root {
+    --bg-dark: #001220;
+    --bg-accent: #002b4d;
+    --gold: #d4af37;
+    --gold-light: #f9e29c;
+    --white: #ffffff;
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-intense: rgba(255, 255, 255, 0.1);
+    --red-curtain: #800000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    background-color: var(--bg-dark);
+}
+
+body {
+    background: linear-gradient(to bottom, #001220, #002b4d, #001220);
+    color: var(--white);
+    font-family: 'Outfit', sans-serif;
+    overflow-x: hidden;
+    overflow-y: hidden; /* Lock initially for curtain */
+    line-height: 1.6;
+}
+
+/* Curtain Styles */
+.curtain-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 2000;
+    display: flex;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.curtain {
+    width: 50%;
+    height: 100%;
+    background: radial-gradient(circle at center, #a00000, #600000 80%),
+                repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(0,0,0,0.2) 35px, transparent 40px);
+    background-size: 100% 100%, 100% 100%;
+    position: relative;
+    transition: transform 2s cubic-bezier(0.7, 0, 0.3, 1);
+    box-shadow: inset 0 0 100px rgba(0,0,0,0.5);
+}
+
+.curtain-left { border-right: 2px solid rgba(0,0,0,0.3); }
+.curtain-right { border-left: 2px solid rgba(0,0,0,0.3); }
+
+.curtain-container.opened .curtain-left { transform: translateX(-100%) skewX(-5deg); }
+.curtain-container.opened .curtain-right { transform: translateX(100%) skewX(5deg); }
+
+.curtain-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2001;
+    width: 100%;
+}
+
+.gold-frame {
+    border: 3px solid var(--gold);
+    padding: 2.5rem 1.5rem;
+    display: inline-block;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+}
+
+.curtain-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: var(--gold-light);
+    margin-bottom: 0.5rem;
+}
+
+.curtain-subtitle {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+}
+
+.touch-hint {
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* Background Elements */
+#stars-container, #bubbles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: twinkle var(--duration) infinite ease-in-out;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+}
+
+/* Main Content Layout */
+main { padding-top: 0; }
+.hidden { display: none !important; }
+
+section {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* Glassmorphism Cards - Original Compact Sizes */
+.glass-container, .glass-card {
+    background: var(--glass);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid var(--glass-border);
+    border-radius: 30px;
+    padding: 3rem;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    color: var(--white);
+}
+
+.glass-card.intense {
+    background: var(--glass-intense);
+    border-color: rgba(255,255,255,0.2);
+}
+
+/* Titles and Subtitles */
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--gold-light);
+}
+
+.section-subtitle {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-bottom: 2rem;
+}
+
+.event-card {
+    margin-bottom: 5rem;
+}
+
+.event-card:last-child {
+    margin-bottom: 0;
+}
+
+.event-card h3 {
+    margin-bottom: 1.5rem;
+}
+
+.event-card p {
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+}
+
+.event-card .btn-group {
+    margin-top: 2rem;
+}
+
+/* Hero Section */
+.hero { height: 100vh; padding: 0; }
+
+.intro-text {
+    letter-spacing: 2px;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    font-weight: 500;
+    background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 5px rgba(212, 175, 55, 0.2);
+}
+
+/* Footer styling */
+.main-footer {
+    padding: 6rem 2rem 8rem;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.main-footer .section-title {
+    margin-bottom: 0.5rem;
+}
+
+.happily-ever-after {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: block;
+    text-align: center;
+    filter: drop-shadow(0 0 8px rgba(249, 226, 156, 0.4));
+    margin-top: 1.5rem;
+}
+
+/* Countdown */
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.time-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+}
+
+.time-box span {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--gold-light);
+    line-height: 1;
+}
+
+.time-box label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 0.5rem;
+    opacity: 0.8;
+}
+
+/* Photo Gallery */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 15px;
+}
+
+.photo-placeholder {
+    aspect-ratio: 1 / 1;
+    background: rgba(255,255,255,0.05);
+    border: 1px dashed var(--gold);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    font-size: 0.8rem;
+}
+
+/* Buttons */
+.btn.primary {
+    background: linear-gradient(45deg, var(--gold), #e6c253);
+    color: var(--white);
+    border: none;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    font-weight: 700;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+}
+
+.btn.secondary {
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    background: transparent;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+}
+
+/* Bubbles - Light/Seafoamish */
+.bubble {
+    position: absolute;
+    bottom: -100px;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), rgba(127, 179, 213, 0.1) 60%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    animation: rise var(--duration) linear infinite;
+}
+
+@keyframes rise {
+    0% { transform: translateY(0) scale(0.5); opacity: 0; }
+    15% { opacity: 0.5; }
+    85% { opacity: 0.5; }
+    100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
+}
+
+/* RSVP Form Area */
+.rsvp-form { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
+.attendance-options { display: flex; justify-content: center; gap: 2rem; }
+.radio-label { display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--gold-light); font-weight: 600; }
+.radio-label input[type="radio"] { display: none; }
+.custom-radio { width: 22px; height: 22px; border: 2px solid var(--gold); border-radius: 50%; position: relative; background: rgba(255,255,255,0.05); }
+.radio-label input[type="radio"]:checked + .custom-radio::after { content: ""; position: absolute; width: 12px; height: 12px; background: var(--gold); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+.input-group input, .input-group textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 12px;
+    padding: 1rem;
+    font-family: inherit;
+}
+
+.input-group input:focus, .input-group textarea:focus { border-color: var(--gold); outline: none; background: rgba(255,255,255,0.1); }
+
+/* Color Palette Styling */
+.color-palette {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.color-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.color-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.color-circle:hover {
+    transform: scale(1.1);
+}
+
+.color-label {
+    font-size: 0.9rem;
+    color: var(--gold-light);
+}
+
+/* Bank Details (Screenshot Style) */
+.bank-details {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.bank-row {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.bank-row:hover {
+    background: rgba(0, 0, 0, 0.35);
+    border-color: var(--gold-border);
+}
+
+.bank-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.bank-info label {
+    font-size: 0.75rem;
+    color: var(--gold-light);
+    opacity: 0.6;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+}
+
+.bank-info span {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--white);
+    letter-spacing: 0.5px;
+}
+
+.copy-glow {
+    background: none;
+    border: none;
+    color: var(--gold);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copy-glow:hover {
+    color: var(--gold-light);
+    transform: scale(1.1);
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.gift-footer {
+    margin-top: 2.5rem;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3rem;
+    color: var(--gold);
+    opacity: 0.8;
+}
+
+/* Reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s ease-out;
+}
+
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .section-title { font-size: 2.22rem; }
+    .glass-card { padding: 2rem 1.5rem; }
+}
