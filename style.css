@@ -60,6 +60,16 @@ body {
 .curtain-container.opened .curtain-left { transform: translateX(-100%) skewX(-5deg); }
 .curtain-container.opened .curtain-right { transform: translateX(100%) skewX(5deg); }
 
+.curtain-container.opened .curtain-content {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s ease;
+}
+
+.curtain-container.opened {
+    pointer-events: none;
+}
+
 .curtain-content {
     position: absolute;
     top: 50%;
@@ -68,6 +78,7 @@ body {
     text-align: center;
     z-index: 2001;
     width: 100%;
+    transition: opacity 0.5s ease;
 }
 
 .gold-frame {
@@ -272,23 +283,115 @@ section {
     opacity: 0.8;
 }
 
-/* Photo Gallery */
-.photo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 15px;
+/* Timeline "Nuestra Historia" */
+.timeline-card {
+    max-width: 900px; /* Wider for story layout */
 }
 
-.photo-placeholder {
-    aspect-ratio: 1 / 1;
+.timeline {
+    position: relative;
+    padding: 2rem 0;
+    margin-top: 2rem;
+}
+
+/* Vertical line for timeline - very subtle gold */
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    opacity: 0.3;
+}
+
+.timeline-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+    width: 100%;
+}
+
+.timeline-item.alt {
+    flex-direction: row-reverse;
+}
+
+.timeline-img, .timeline-text {
+    width: 40%;
+}
+
+.timeline-text {
+    text-align: left;
+}
+
+.timeline-item.alt .timeline-text {
+    text-align: right;
+}
+
+.story-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--gold-light);
+    margin-bottom: 0.5rem;
+}
+
+.timeline-text p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.img-placeholder {
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 1.2 / 1;
     background: rgba(255,255,255,0.05);
-    border: 1px dashed var(--gold);
+    border: 1px solid var(--gold);
     border-radius: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
-    font-size: 0.8rem;
+    padding: 0.8rem;
+    font-size: 0.75rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+    margin: 0 auto;
+}
+
+.img-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.timeline-item:hover .img-placeholder {
+    transform: scale(1.03) rotate(1deg);
+}
+
+/* Mobile responsive timeline */
+@media (max-width: 768px) {
+    .timeline::before { left: 5% !important; }
+    .timeline-item, .timeline-item.alt {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        padding-left: 15% !important;
+    }
+    .timeline-img, .timeline-text {
+        width: 100% !important;
+        text-align: left !important;
+        margin-bottom: 1.5rem !important;
+    }
+}
+
+/* Photo Gallery (Legacy - Kept for compatibility if needed) */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 15px;
 }
 
 /* Buttons */

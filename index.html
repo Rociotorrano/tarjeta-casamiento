@@ -55,18 +55,49 @@
             </div>
         </section>
 
-        <!-- Photo Gallery Section -->
+        <!-- Nuestra Historia Section (Timeline) -->
         <section class="gallery-section reveal">
-            <div class="glass-card">
+            <div class="glass-card timeline-card">
                 <h2 class="section-title">Nuestra Historia</h2>
-                <p class="section-subtitle">Momentos que atesoramos</p>
-                <div class="photo-grid">
-                    <div class="photo-placeholder"><span>Subí tu foto aquí</span></div>
-                    <div class="photo-placeholder"><span>Subí tu foto aquí</span></div>
-                    <div class="photo-placeholder"><span>Subí tu foto aquí</span></div>
-                    <div class="photo-placeholder"><span>Subí tu foto aquí</span></div>
-                    <div class="photo-placeholder"><span>Subí tu foto aquí</span></div>
-                    <div class="photo-placeholder"><span>Subí tu foto aquí</span></div>
+                <div class="timeline">
+                    <!-- Item 1 -->
+                    <div class="timeline-item reveal">
+                        <div class="timeline-img">
+                            <div class="img-placeholder">
+                                <img src="nosotros1.jpeg" alt="Cómo nos conocimos">
+                            </div>
+                        </div>
+                        <div class="timeline-text">
+                            <h3 class="story-title">Donde nos conocimos</h3>
+                            <p>Todo empezó con una mirada, una sonrisa y un partido ganado.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="timeline-item alt reveal">
+                        <div class="timeline-img">
+                            <div class="img-placeholder">
+                                <img src="viaje.jpg" alt="Nuestro primer viaje">
+                            </div>
+                        </div>
+                        <div class="timeline-text">
+                            <h3 class="story-title">Nuestro primer viaje</h3>
+                            <p>Nuestra primera aventura, descubriendo el mundo totalmente nuevo de a tres.</p>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="timeline-item reveal">
+                        <div class="timeline-img">
+                            <div class="img-placeholder">
+                                <img src="propuesta.jpg" alt="El compromiso">
+                            </div>
+                        </div>
+                        <div class="timeline-text">
+                            <h3 class="story-title">El gran paso</h3>
+                            <p>Frente al mar decidimos que queríamos caminar juntos por
+                                siempre.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -243,7 +274,9 @@
         <section class="rsvp-section reveal">
             <div class="glass-card intense rsvp-card">
                 <h2 class="section-title">¿Asistes a la fiesta?</h2>
-                <form action="https://formspree.io/f/YOUR_ID_HERE" method="POST" class="rsvp-form">
+                <form id="rsvp-form"
+                    action="https://script.google.com/macros/s/AKfycbwVSo2GzUxYGscPX9CRsTsUVLL1lGa80ExZ3F47Im7Yu0XbGeSqBdvTKUcjbjTQ_gU80g/exec"
+                    method="POST" class="rsvp-form">
                     <!-- Hidden input to direct to user email if they use a generic Formspree endpoint or for reference -->
                     <input type="hidden" name="_to" value="torranorocio9@gmail.com">
 

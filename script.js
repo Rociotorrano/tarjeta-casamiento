@@ -8,7 +8,11 @@ function openCurtain() {
     const mainContent = document.getElementById('main-content');
 
     curtainContainer.classList.add('opened');
-    
+
+    // Fade out welcoming text immediately to avoid overlap
+    const curtainContent = document.querySelector('.curtain-content');
+    if (curtainContent) curtainContent.style.opacity = '0';
+
     // Show main content immediately so it's visible behind the curtains
     mainContent.classList.remove('hidden');
     document.body.style.overflowY = 'auto'; // Allow scrolling
@@ -28,18 +32,18 @@ function createStars() {
     for (let i = 0; i < starCount; i++) {
         const star = document.createElement('div');
         star.className = 'star';
-        
+
         const size = Math.random() * 2 + 1;
         star.style.width = `${size}px`;
         star.style.height = `${size}px`;
-        
+
         star.style.top = `${Math.random() * 100}%`;
         star.style.left = `${Math.random() * 100}%`;
-        
+
         const duration = Math.random() * 3 + 2;
         star.style.setProperty('--duration', `${duration}s`);
         star.style.animationDelay = `${Math.random() * 5}s`;
-        
+
         container.appendChild(star);
     }
 }
@@ -47,13 +51,13 @@ function createStars() {
 // Scroll Reveal Logic
 function initScrollReveal() {
     const reveals = document.querySelectorAll('.reveal');
-    
+
     const revealOnScroll = () => {
         for (let i = 0; i < reveals.length; i++) {
             const windowHeight = window.innerHeight;
             const elementTop = reveals[i].getBoundingClientRect().top;
             const elementVisible = 150;
-            
+
             if (elementTop < windowHeight - elementVisible) {
                 reveals[i].classList.add('active');
             }
@@ -117,21 +121,54 @@ function createBubbles() {
 function spawnBubble(container) {
     const bubble = document.createElement('div');
     bubble.className = 'bubble';
-    
+
     const size = Math.random() * 60 + 20 + 'px';
     bubble.style.width = size;
     bubble.style.height = size;
-    
+
     bubble.style.left = Math.random() * 100 + '%';
-    
+
     // Set duration and delay
     const duration = Math.random() * 10 + 10;
     const delay = -Math.random() * duration; // Negative delay to start mid-animation
-    
+
     bubble.style.setProperty('--duration', duration + 's');
     bubble.style.animationDelay = delay + 's';
-    
+
     container.appendChild(bubble);
+}
+
+// RSVP Form Handling
+function initRSVP() {
+    const form = document.getElementById('rsvp-form');
+    if (!form) return;
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const submitBtn = form.querySelector('.submit-btn');
+        submitBtn.innerText = "ENVIANDO...";
+        submitBtn.disabled = true;
+
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            mode: 'no-cors' // Google Apps Script requires this for cross-domain POST
+        }).then(() => {
+            form.innerHTML = `
+                <div class="success-message reveal active" style="padding: 2rem;">
+                    <h3 class="section-title">¡Gracias por confirmar!</h3>
+                    <p>Tu respuesta ha sido guardada</p>
+                </div>
+            `;
+        }).catch(err => {
+            console.error('Error:', err);
+            alert("Hubo un problema al enviar. Por favor intenta de nuevo.");
+            submitBtn.innerText = "ENVIAR";
+            submitBtn.disabled = false;
+        });
+    });
 }
 
 // Initialize components on load
@@ -139,6 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
     createStars();
     createBubbles();
     initCountdown();
-    // Scroll reveal is initialized after curtain opens
+    initRSVP();
 });
 
