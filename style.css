@@ -212,6 +212,20 @@ section {
     margin-top: 2rem;
 }
 
+/* Adults Only Section */
+.adults-only-section {
+    min-height: auto;
+    padding: 3rem 2rem;
+}
+
+.adults-text {
+    font-size: 1.4rem;
+    font-family: 'Playfair Display', serif;
+    color: var(--gold-light);
+    font-style: italic;
+    line-height: 1.6;
+}
+
 /* Hero Section */
 .hero { height: 100vh; padding: 0; }
 
